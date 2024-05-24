@@ -12,7 +12,7 @@ const createUser = async (payload: IUser): Promise<IUser> => {
 
   const user = new User();
 
-  const isUserExists = await user.isUserExists(email);
+  const isUserExists = await user.isUserExists(email, true);
 
   if (isUserExists) {
     throw new ApiError(httpStatus.BAD_REQUEST, "User already exists");
@@ -44,7 +44,7 @@ const loginUser = async (payload: IUser) => {
 
   const { password, ...userWithoutPassword } = isUserExists.toObject();
 
-  console.log(isUserExists);
+  // console.log(isUserExists);
 
   return userWithoutPassword;
 };
